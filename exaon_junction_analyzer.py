@@ -104,7 +104,7 @@ class SpliceGraphAnalyzer:
             traceback.print_exc()
 
     def build_graph(self):
-        #Nodes: Genomic coordinates (e.g., 'chr1:100')
+        #Nodes: Genomic coordinates
         #Edges: Splicing events       
         for (chrom, start, end), count in self.junctions.items():
             u = f"{chrom}:{start}" # Donor Node
