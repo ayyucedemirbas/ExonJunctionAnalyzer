@@ -22,12 +22,12 @@ hisat2 -p 4 -x hg38_index/grch38/genome -U SRR35927838_1.fastq -S aligned_reads.
 samtools sort -@ 4 -o cancer_mcf7.bam aligned_reads.sam
 rm aligned_reads.sam
 samtools index cancer_mcf7.bam
-get https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_45/gencode.v45.annotation.gtf.gz
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_45/gencode.v45.annotation.gtf.gz
 gunzip gencode.v45.annotation.gtf.gz
 
 prefetch SRR25208720
 fasterq-dump --split-3 SRR25208720 -e 4 -p
-hisat2 -p 4 -x grch38_index/genome -1 SRR25208720_1.fastq -2 SRR25208720_2.fastq -S normal_mcf10a.sam
+hisat2 -p 4 -x  hg38_index/grch38/genome -1 SRR25208720_1.fastq -2 SRR25208720_2.fastq -S normal_mcf10a.sam
 samtools view -@ 4 -bS normal_mcf10a.sam | samtools sort -@ 4 -o normal_mcf10a_sorted.bam
 samtools index normal_mcf10a_sorted.bam
 rm normal_mcf10a.sam
